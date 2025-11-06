@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Sweets - Princess Point</title>
+    <style>
+        body {
+            background: #ffe4f1;
+            color: #333;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        /* Fade-in and slide-up animation for main */
+        main {
+            animation: fadeSlideUp 1.2s cubic-bezier(.77,0,.18,1) both;
+        @keyframes fadeSlideUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        /* Animated gradient for header */
+        header {
+            background: linear-gradient(270deg, #ffb6d5, #ff69b4, #ffb6d5);
+            background-size: 600% 600%;
+            animation: gradientMove 6s ease infinite;
+        }
+        @keyframes gradientMove {
+            0% {background-position:0% 50%}
+            50% {background-position:100% 50%}
+            100% {background-position:0% 50%}
+        }
+        /* Button press animation */
+            @keyframes fadeSlideUp {
+                0% { opacity: 0; transform: translateY(40px); }
+                100% { opacity: 1; transform: translateY(0); }
+            }
+            main {
+                max-width: 700px;
+                margin: 2rem auto;
+                background: #fff0f6;
+                padding: 2rem;
+                border-radius: 1rem;
+                box-shadow: 0 2px 12px rgba(255, 182, 213, 0.15);
+                position: relative;
+                z-index: 2;
+            }
+            .item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1.5rem;
+                padding: 1rem;
+                background: #ffe4f1;
+                border-radius: 0.75rem;
+                box-shadow: 0 1px 4px rgba(255, 105, 180, 0.08);
+            }
+            .item-name {
+                font-weight: bold;
+                font-size: 1.1rem;
+            }
+            .item-price {
+                color: #ff69b4;
+                font-weight: bold;
+                margin-right: 1.2rem;
+            }
+            .button {
+                background: linear-gradient(90deg, #ff69b4 0%, #ffb6d5 100%);
+                color: white;
+                padding: 0.5rem 1.2rem;
+                border-radius: 2rem;
+                border: none;
+                font-weight: bold;
+                cursor: pointer;
+                box-shadow: 0 2px 6px rgba(255, 105, 180, 0.2);
+                transition: background 0.2s, color 0.2s;
+                margin-left: 0.5rem;
+            }
+            .button:hover {
+                background: #fff0f6;
+                color: #ff69b4;
+            }
+            #cart {
+                margin-top: 2rem;
+                background: #fff0f6;
+                padding: 1rem;
+                border-radius: 1rem;
+                box-shadow: 0 2px 8px rgba(255, 182, 213, 0.12);
+            }
+            #cart h2 {
+                margin-top: 0;
+                margin-bottom: 1rem;
+                font-size: 1.3rem;
+            }
+            #cart ul {
+                padding-left: 1.2rem;
+                margin-bottom: 1rem;
+            }
+            #cart-total {
+                font-weight: bold;
+                color: #a64d79;
+                margin-top: 1rem;
+                font-size: 1.1rem;
+            }
+            footer {
+                text-align: center;
+                margin-top: 2rem;
+                color: #a64d79;
+                font-size: 1rem;
+            }
+            .sweet {
+                position: absolute;
+                z-index: 1;
+                pointer-events: none;
+            }
+            .sweet1 { left: 2%; top: 10px; animation: floatSweet 4s ease-in-out infinite; }
+            .sweet2 { right: 5%; top: 30px; animation: spinSweet 6s linear infinite; }
+    }
+            .sweet3 { left: 50%; top: -18px; transform: translateX(-50%); animation: floatSweet 5s 1s ease-in-out infinite; }
+    }
+            .sweet-corner.sweet4 { left: -20px; bottom: -20px; animation: spinSweet 7s linear infinite; }
+            .sweet-corner.sweet5 { right: -16px; bottom: 10px; animation: floatSweet 6s 2s ease-in-out infinite; }
+    }
+            @keyframes floatSweet {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-18px) scale(1.08); }
+            }
+            @keyframes spinSweet {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+        }
+        /* Cart item addition animation */
+        .cart-item-animate {
+            animation: popIn 0.5s cubic-bezier(.77,0,.18,1);
+        }
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.7); }
+            80% { opacity: 1; transform: scale(1.05); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        header {
+            background: linear-gradient(90deg, #ffb6d5 0%, #ff69b4 100%);
+            padding: 2rem 0;
+            text-align: center;
+            color: white;
+            box-shadow: 0 2px 8px rgba(255, 105, 180, 0.1);
+        }
+        main {
+            max-width: 700px;
+            margin: 2rem auto;
+            background: #fff0f6;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 2px 12px rgba(255, 182, 213, 0.15);
+        }
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #ffe4f1;
+            border-radius: 0.75rem;
+        }
+        .item-name {
+            font-weight: bold;
+        }
+        .item-price {
+            color: #ff69b4;
+            font-weight: bold;
+        }
+        .button {
+            background: #ff69b4;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(255, 105, 180, 0.2);
+            transition: background 0.2s;
+        }
+        .button:hover {
+            background: #ffb6d5;
+            color: #ff69b4;
+        }
+        #cart {
+            margin-top: 2rem;
+            background: #fff0f6;
+            padding: 1rem;
+            border-radius: 1rem;
+            box-shadow: 0 2px 8px rgba(255, 182, 213, 0.12);
+        }
+        #cart ul {
+            padding-left: 1.2rem;
+        }
+        /* Sweets animation styles */
+        .sweet {
+            position: absolute;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .sweet1 { left: 2%; top: 10px; animation: floatSweet 4s ease-in-out infinite; }
+        .sweet2 { right: 5%; top: 30px; animation: spinSweet 6s linear infinite; }
+        .sweet3 { left: 50%; top: -18px; transform: translateX(-50%); animation: floatSweet 5s 1s ease-in-out infinite; }
+        .sweet-corner.sweet4 { left: -20px; bottom: -20px; animation: spinSweet 7s linear infinite; }
+        .sweet-corner.sweet5 { right: -16px; bottom: 10px; animation: floatSweet 6s 2s ease-in-out infinite; }
+        @keyframes floatSweet {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-18px) scale(1.08); }
+        }
+        @keyframes spinSweet {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+            <header style="position:relative; overflow:hidden;">
+                <!-- Animated sweets -->
+                <div class="sweet sweet1">
+                    <svg width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="24" r="16" fill="#ff69b4" stroke="#fff" stroke-width="4"/><circle cx="24" cy="24" r="8" fill="#fff0f6"/></svg>
+                </div>
+                <div class="sweet sweet2">
+                    <svg width="36" height="36" viewBox="0 0 36 36"><rect x="6" y="12" width="24" height="12" rx="6" fill="#ffb6d5" stroke="#fff" stroke-width="3"/><circle cx="12" cy="18" r="4" fill="#fff0f6"/></svg>
+                </div>
+                <div class="sweet sweet3">
+                    <svg width="32" height="32" viewBox="0 0 32 32"><ellipse cx="16" cy="16" rx="12" ry="8" fill="#ffe4f1" stroke="#ff69b4" stroke-width="2"/></svg>
+                </div>
+                <h1>Order Sweets</h1>
+                <p>Select your favorite treats, add them to your cart, and place your order!</p>
+                <a href="index.html" class="button" style="margin-top:1rem;">Home</a>
+            </header>
+        <main>
+                <!-- Corner sweets -->
+                <div class="sweet sweet-corner sweet4">
+                    <svg width="40" height="40" viewBox="0 0 40 40"><polygon points="20,5 35,35 5,35" fill="#ffb6d5" stroke="#fff" stroke-width="3"/></svg>
+                </div>
+                <div class="sweet sweet-corner sweet5">
+                    <svg width="32" height="32" viewBox="0 0 32 32"><rect x="8" y="8" width="16" height="16" rx="8" fill="#ff69b4" stroke="#fff" stroke-width="2"/></svg>
+                </div>
+        <div class="item">
+            <span class="item-name">Tubs</span>
+            <span class="item-price">R45 – R65</span>
+            <button class="button" onclick="addToCart('Tubs', 'R45 – R65')">Add to Cart</button>
+        </div>
+        <div class="item">
+            <span class="item-name">Packets</span>
+            <span class="item-price">R39 – R43</span>
+            <button class="button" onclick="addToCart('Packets', 'R39 – R43')">Add to Cart</button>
+        </div>
+        <div class="item">
+            <span class="item-name">Cups</span>
+            <span class="item-price">R20-25</span>
+            <button class="button" onclick="addToCart('Cups', 'R20-25')">Add to Cart</button>
+        </div>
+        <div class="item">
+            <span class="item-name">Cones</span>
+            <span class="item-price">R15</span>
+            <button class="button" onclick="addToCart('Cones', 'R15')">Add to Cart</button>
+        </div>
+        <div id="cart">
+            <h2>Your Cart</h2>
+            <ul id="cart-list"></ul>
+            <div id="cart-total" style="font-weight:bold;color:#a64d79;margin-top:1rem;"></div>
+            <button class="button" onclick="clearCart()">Clear Cart</button>
+            <button class="button" id="orderBtn" style="margin-left:0.5rem;">Order</button>
+        </div>
+        <!-- Customization panel: prefill from homepage query params -->
+        <div id="customizationPanel" style="margin-top:1.2rem;display:none;background:#fff0f6;padding:1rem;border-radius:0.8rem;">
+            <h3 style="margin:0 0 0.6rem 0;color:#a64d79;">Customized Item</h3>
+            <div id="customizationDetails" style="margin-bottom:0.6rem;"></div>
+            <button id="addCustomBtn" class="button">Add Customized Item to Cart</button>
+        </div>
+     </main>
+    <footer>
+        &copy; 2025 Princess Point. All rights reserved.
+    </footer>
+    <script>
+        // Keep cart logic, remove modal and email-submit code (customer page sends emails)
+        const cart = [];
+        function addToCart(name, price) {
+            let item = cart.find(i => i.name === name && i.price === price);
+            if(item) {
+                item.quantity++;
+            } else {
+                cart.push({name, price, quantity: 1});
+            }
+            renderCart();
+        }
+        function renderCart() {
+            const cartList = document.getElementById('cart-list');
+            cartList.innerHTML = '';
+            let total = 0;
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} - ${item.price} x${item.quantity}`;
+                li.classList.add('cart-item-animate');
+                cartList.appendChild(li);
+                setTimeout(() => li.classList.remove('cart-item-animate'), 600);
+                let match = /\d+/.exec(item.price);
+                let priceNum = match ? parseInt(match[0]) : 0;
+                total += priceNum * item.quantity;
+            });
+            document.getElementById('cart-total').textContent = `Total: R${total}`;
+        }
+        function clearCart() {
+            cart.length = 0;
+            renderCart();
+        }
+
+        // Attach handlers after DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            const orderBtn = document.getElementById('orderBtn');
+
+            // Order button: persist cart then navigate to customer page if cart has items
+            orderBtn.addEventListener('click', function() {
+                if (cart.length === 0) {
+                    alert('Your cart is empty!');
+                    return;
+                }
+                try {
+                    localStorage.setItem('pp_cart', JSON.stringify(cart));
+                } catch (err) {
+                    console.warn('Could not persist cart to localStorage', err);
+                }
+                window.location.href = 'customer.html';
+            });
+
+            // Initial render
+            renderCart();
+        });
+    </script>
+</body>
+</html>

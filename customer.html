@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Info - Princess Point</title>
+    <style>
+        body {
+            background: #ffe4f1;
+            color: #333;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: linear-gradient(90deg, #ffb6d5 0%, #ff69b4 100%);
+            padding: 2rem 0;
+            text-align: center;
+            color: white;
+            box-shadow: 0 2px 8px rgba(255, 105, 180, 0.1);
+        }
+        main {
+            max-width: 500px;
+            margin: 2rem auto;
+            background: #fff0f6;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 2px 12px rgba(255, 182, 213, 0.15);
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #ffb6d5;
+            font-size: 1rem;
+        }
+        .button {
+            background: #ff69b4;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(255, 105, 180, 0.2);
+            transition: background 0.2s;
+        }
+        .button:hover {
+            background: #ffb6d5;
+            color: #ff69b4;
+        }
+        .success {
+            color: #ff69b4;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        /* Sweets animation styles */
+        .sweet {
+            position: absolute;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .sweet1 { left: 2%; top: 10px; animation: floatSweet 4s ease-in-out infinite; }
+        .sweet2 { right: 5%; top: 30px; animation: spinSweet 6s linear infinite; }
+        .sweet3 { left: 50%; top: -18px; transform: translateX(-50%); animation: floatSweet 5s 1s ease-in-out infinite; }
+        .sweet-corner.sweet4 { left: -20px; bottom: -20px; animation: spinSweet 7s linear infinite; }
+        .sweet-corner.sweet5 { right: -16px; bottom: 10px; animation: floatSweet 6s 2s ease-in-out infinite; }
+        @keyframes floatSweet {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-18px) scale(1.08); }
+        }
+        @keyframes spinSweet {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+        <header style="position:relative; overflow:hidden;">
+            <!-- Animated sweets -->
+            <div class="sweet sweet1">
+                <svg width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="24" r="16" fill="#ff69b4" stroke="#fff" stroke-width="4"/><circle cx="24" cy="24" r="8" fill="#fff0f6"/></svg>
+            </div>
+            <div class="sweet sweet2">
+                <svg width="36" height="36" viewBox="0 0 36 36"><rect x="6" y="12" width="24" height="12" rx="6" fill="#ffb6d5" stroke="#fff" stroke-width="3"/><circle cx="12" cy="18" r="4" fill="#fff0f6"/></svg>
+            </div>
+            <div class="sweet sweet3">
+                <svg width="32" height="32" viewBox="0 0 32 32"><ellipse cx="16" cy="16" rx="12" ry="8" fill="#ffe4f1" stroke="#ff69b4" stroke-width="2"/></svg>
+            </div>
+            <h1>Customer Information</h1>
+            <p>Please fill in your details before ordering.</p>
+            <a href="index.html" class="button" style="margin-top:1rem;">Home</a>
+        </header>
+    <main>
+        <!-- Thank you popup modal -->
+        <div id="customerSuccessModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(255,182,213,0.7);z-index:999;align-items:center;justify-content:center;outline:none;border:none;">
+            <div style="background:#fff0f6;padding:2rem 2.5rem;border-radius:1.5rem;box-shadow:0 2px 16px rgba(255,105,180,0.18);text-align:center;max-width:350px;margin:auto;outline:none;border:none;">
+                <h2 style="color:#a64d79;">Thank you for submitting your info!</h2>
+                <p>Your information has been received.</p>
+                <button class="button" onclick="window.location.href='buy.html'" style="margin:1rem 0.5rem 0 0;">Order Sweets</button>
+                <button class="button" onclick="window.location.href='index.html'" style="margin:1rem 0 0 0.5rem;background:#a64d79;">Go Home</button>
+            </div>
+        </div>
+                        <!-- Corner sweets -->
+                        <div class="sweet sweet-corner sweet4">
+                            <svg width="40" height="40" viewBox="0 0 40 40"><polygon points="20,5 35,35 5,35" fill="#ffb6d5" stroke="#fff" stroke-width="3"/></svg>
+                        </div>
+                        <div class="sweet sweet-corner sweet5">
+                            <svg width="32" height="32" viewBox="0 0 32 32"><rect x="8" y="8" width="16" height="16" rx="8" fill="#ff69b4" stroke="#fff" stroke-width="2"/></svg>
+                        </div>
+        <form action="https://api.web3forms.com/submit" method="POST" style="background:#fff0f6;padding:1.5rem;border-radius:1rem;box-shadow:0 2px 8px rgba(255,182,213,0.12);margin-top:2rem;">
+            <label for="name">Name</label>
+             <input type="hidden" name="access_key" value="b0c2ae92-81e9-4232-aedd-8539f565605b">
+            <input type="text" id="name" name="name" required style="width:100%;margin-bottom:1rem;">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required style="width:100%;margin-bottom:1rem;">
+            <label for="phone">Phone Number</label>
+            <!-- restrict to digits, hint numeric keyboard, max 10 chars -->
+            <input type="tel" id="phone" name="phone" required inputmode="numeric" pattern="\d{10}" maxlength="10"
+                   placeholder="Enter 10-digit phone number" title="Enter exactly 10 digits"
+                   style="width:100%;margin-bottom:1rem;">
+            <label for="address">Address</label>
+            <textarea id="address" name="address" rows="2" required style="width:100%;margin-bottom:1rem;"></textarea>
+            <label for="notes">Additional Notes</label>
+            <textarea id="notes" name="notes" rows="2" style="width:100%;margin-bottom:1rem;"></textarea>
+            <button type="submit" class="button">Submit</button>
+        </form>
+        <script>
+        // Helper: digits-only normalization and phone check
+        function normalizeDigits(str) { return (str || '').replace(/\D/g, ''); }
+        function isValidPhone(str) { return normalizeDigits(str).length === 10; }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('form[action="https://api.web3forms.com/submit"]');
+            const phone = document.getElementById('phone');
+            const successModal = document.getElementById('customerSuccessModal');
+
+            // keep phone digits-only while typing
+            phone.addEventListener('input', function () {
+                const digits = normalizeDigits(this.value).slice(0, 10);
+                if (this.value !== digits) this.value = digits;
+            });
+
+            // read persisted cart from buy page (if any)
+            function readPersistedCart() {
+                try {
+                    return JSON.parse(localStorage.getItem('pp_cart') || '[]');
+                } catch (e) {
+                    return [];
+                }
+            }
+
+            // build message text and structured items
+            function buildOrderFromCart(formValues) {
+                const cart = readPersistedCart();
+                let lines = [];
+                lines.push('Order for Princess Point');
+                lines.push(`Name: ${formValues.name || '(not provided)'}`);
+                lines.push(`Email: ${formValues.email || '(not provided)'}`);
+                lines.push(`Phone: ${formValues.phone || '(not provided)'}`);
+                lines.push(`Address: ${formValues.address || '(not provided)'}`);
+                if (formValues.notes) lines.push(`Notes: ${formValues.notes}`);
+                lines.push('');
+                lines.push('Items:');
+
+                let total = 0;
+                const orderedItems = [];
+                if (cart.length === 0) {
+                    lines.push('(no items in cart)');
+                } else {
+                    cart.forEach(item => {
+                        const match = /\d+/.exec(item.price);
+                        const unit = match ? parseInt(match[0], 10) : null;
+                        const qty = item.quantity || 1;
+                        const subtotal = unit != null ? unit * qty : null;
+                        lines.push(`- ${item.name} | ${item.price} × ${qty}` + (subtotal != null ? ` = R${subtotal}` : ''));
+                        orderedItems.push({ name: item.name, price: item.price, unit, quantity: qty, subtotal });
+                        if (subtotal) total += subtotal;
+                    });
+                }
+
+                // include any URL parameters (e.g. study pack)
+                const params = new URLSearchParams(window.location.search);
+                if (params.has('studyItems')) {
+                    const raw = params.get('studyItems') || '';
+                    const qty = parseInt(params.get('studyQty') || '1', 10) || 1;
+                    const items = raw.split(',').map(s => s.trim()).filter(Boolean);
+                    if (items.length) {
+                        lines.push('');
+                        lines.push('Study Pack items:');
+                        items.forEach(it => {
+                            lines.push(`- ${it} × ${qty}`);
+                            orderedItems.push({ name: it, price: null, unit: null, quantity: qty, subtotal: null });
+                        });
+                    }
+                }
+
+                lines.push('');
+                lines.push(`Estimated total: R${total}`);
+                lines.push('');
+                lines.push('--- End of order ---');
+
+                return { text: lines.join('\n'), total, orderedItems };
+            }
+
+            // intercept submit, send to Web3Forms including order items
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const formValues = {
+                    name: form.name.value.trim(),
+                    email: form.email.value.trim(),
+                    phone: form.phone.value.trim(),
+                    address: form.address.value.trim(),
+                    notes: form.notes.value.trim()
+                };
+
+                // Validate phone if numbers present
+                if (/\d/.test(formValues.phone) && !isValidPhone(formValues.phone)) {
+                    alert('Please enter a valid 10-digit phone number (numbers only).');
+                    phone.focus();
+                    return;
+                }
+
+                // build order message and structured items
+                const { text: messageText, total, orderedItems } = buildOrderFromCart(formValues);
+
+                // access_key is present as hidden input in the form
+                const accessKeyInput = form.querySelector('input[name="access_key"]');
+                const access_key = accessKeyInput ? accessKeyInput.value : '';
+
+                const payload = {
+                    access_key,
+                    subject: 'New order — Princess Point',
+                    email: formValues.email || (formValues.phone && formValues.phone.includes('@') ? formValues.phone : 'no-reply@princesspoint.local'),
+                    name: formValues.name || 'Anonymous',
+                    message: messageText,
+                    custom_fields: {
+                        contact: formValues.phone,
+                        address: formValues.address,
+                        order_items: JSON.stringify(orderedItems),
+                        estimated_total: String(total),
+                        destination_email: 'ephraimbampo227@gmail.com'
+                    }
+                };
+
+                // UI feedback
+                const submitBtn = form.querySelector('button[type="submit"]');
+                if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
+
+                try {
+                    const resp = await fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await resp.json();
+                    if (result.success) {
+                        // clear persisted cart and show success modal
+                        localStorage.removeItem('pp_cart');
+                        successModal.style.display = 'flex';
+                    } else {
+                        console.error('Web3Forms error', result);
+                        alert('Could not send via Web3Forms. Opening email client as fallback.');
+                        window.location.href = `mailto:ephraimbampo227@gmail.com?subject=${encodeURIComponent('Princess Point order')}&body=${encodeURIComponent(messageText)}`;
+                    }
+                } catch (err) {
+                    console.error('Submission error', err);
+                    alert('Network error while sending order. Opening email client as fallback.');
+                    window.location.href = `mailto:ephraimbampo227@gmail.com?subject=${encodeURIComponent('Princess Point order')}&body=${encodeURIComponent(messageText)}`;
+                } finally {
+                    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit'; }
+                }
+            });
+        });
+        </script>
+    </main>
+    <footer>
+        &copy; 2025 Princess Point. All rights reserved.
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <!-- No EmailJS code, only Web3Forms is used for submission -->
+</body>
+</html>
